@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 st.set_page_config(page_title="Transaction Analysis Dashboard", layout="wide")
 
 # Define the backend API URL
-API_URL = "http://0.0.0.0:6969"  # Use the service name defined in docker-compose.yml
+API_URL = "localhost:6969"  # Use the service name defined in docker-compose.yml
 
 def get_date_range():
     response = requests.get(f"{API_URL}/dates_range")
