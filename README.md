@@ -16,7 +16,7 @@ This project analyzes a synthetic fraud dataset to gain insights into transactio
 ### Backend (FastAPI)
 
 - pandas: Data manipulation and analysis
-- requests: HTTP library for API calls
+- unicorn: HTTP web server
 - functools: For caching function results
 
 ### Frontend (SPA)
@@ -36,6 +36,8 @@ This project analyzes a synthetic fraud dataset to gain insights into transactio
 
 ## How to Run Web App.
 
+### Option 1: use docker.
+
 1. Ensure you have Python 3.x installed on your system.
 2. On mac os you may need to add start.sh to allowed commands list.
 
@@ -48,29 +50,49 @@ This project analyzes a synthetic fraud dataset to gain insights into transactio
    ./start.sh
    ```
 
+### Option 2: manually.
+#### Frontend
+1. Open new terminal.
+2. Navigate to dir
+    ```
+   cd app/frontend
+   ```
+3. Start web server
+    ```
+   poetry run streamlit run  frontend/app.py
+   ```
+#### Backend
+1. Open new terminal.
+2. Navigate to dir
+    ```
+   cd app/backend
+   ```
+3. Start web server
+    ```
+   poetry run python backend
+   ```
+
+
 ## Analysis Results
 
-The analysis revealed several interesting insights:
+## Objectives were:
+1. Country Spending Analysis: Analyze the data to determine if some countries spend more money in USD than others. (Completed ✅)
+2. Category Popularity Analysis: Analyze which merchant categories are more popular in some countries compared to others. (Completed ✅)
 
-1. Currency Conversion: All transaction amounts were successfully converted to USD using real-time exchange rates.
-2. Country Spending Analysis:
+## Hypothesis were:
+1. USA and Europe regions are expected to spend more money in USD than other regions.
 
-- The analysis showed significant variations in total spending across different countries.
-- A bar chart and an interactive Plotly visualization were created to illustrate these differences.
+    Hypothesis incorrect. In fact, the most spending country was Mexico, Brazil, and Russia, respectively.
 
-3. Category Popularity Analysis:
 
-- The top 5 merchant categories for each country were identified and visualized.
-- A stacked bar chart was created to show the distribution of popular categories across countries.
+2. Most popular merchant categories in top spending counties are expected to be different from other regions that spend less money.
 
-4. Additional Visualizations:
+    Hypothesis incorrect. Most popular merchant categories in top spending countries were the same as in regions that spent less money. However, the amount of money spend on each category was larger.
 
-- Average Transaction Amount by Country: A scatter plot showing the average transaction amount for each country.
-- Transaction Count by Currency: A pie chart illustrating the distribution of transactions across different currencies.
-- Heatmap of Transaction Counts: A complex visualization showing the relationship between countries, merchant categories, and transaction counts.
-- Top Currencies by Transaction Count: A bar chart displaying the most frequently used currencies in the dataset.
+3. Transaction count should be higher in countries that spend more money.
 
-These visualizations provide valuable insights into spending patterns, popular merchant categories, and currency usage across different countries, which can be useful for fraud detection and business strategy development.
+    Hypothesis incorrect. The most spending country were the ones, that covered most amount of regions, such as Europe. However, it is important to note that
+    originally Europe was expected to be "country that spend more money".
 
 ## Future Work
 
