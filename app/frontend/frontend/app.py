@@ -45,6 +45,24 @@ st.sidebar.header("Date Range Filter")
 start_date = st.sidebar.date_input("Start date", min_date, min_value=min_date, max_value=max_date)
 end_date = st.sidebar.date_input("End date", max_date, min_value=min_date, max_value=max_date)
 
+st.sidebar.header("Currency Converter")
+amount = st.sidebar.number_input("Amount", min_value=0.001, value=1.0, step=0.01)
+from_currency = st.sidebar.text_input("From Currency (e.g., EUR, GBP)", max_chars=3).upper()
+if st.sidebar.button("Convert to USD"):
+    if from_currency:
+        try:
+            response = requests.post(f"{API_URL}/convert_to_usd",
+                                     json={"amount": amount, "from_currency": from_currency})
+            if response.status_code == 200:
+                result = response.json()
+                st.sidebar.success(f"{amount} {from_currency} = {result['amount_usd']} USD")
+            else:
+                st.sidebar.error(f"Error: {response.json().get('error', 'Unknown error')}")
+        except Exception as e:
+            st.sidebar.error(f"Error: {str(e)}")
+    else:
+        st.sidebar.warning("Please enter a valid currency code.")
+
 # Convert dates to string format
 start_date_str = start_date.strftime("%Y-%m-%d")
 end_date_str = end_date.strftime("%Y-%m-%d")

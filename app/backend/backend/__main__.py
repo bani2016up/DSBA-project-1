@@ -4,6 +4,11 @@ import plotly.graph_objects as go
 import base64
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
+from functools import cache
+from pydantic import BaseModel
+from fastapi import FastAPI, HTTPException
+import requests
+
 
 app = FastAPI()
 
@@ -179,6 +184,58 @@ async def get_top_currencies(start_date: str, end_date: str):
         img_base64 = base64.b64encode(img_bytes).decode('utf-8')
 
         return {"image": img_base64}
+    except Exception as e:
+        return JSONResponse(status_code=400, content={"error": str(e)})
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("EXCHANGERATE_API_KEY")
+if not API_KEY:
+    raise ValueError("Exchange rate API key not found in environment variables. Use EXCHANGERATE_API_KEY.")
+
+exchange_rate_cache = {}
+
+@cache
+def get_exchange_rate(currency: str):
+
+    url = f'https://v6.exchangerate-api.com/v6/{API_KEY}/latest/{currency.upper()}'
+    print(url)
+
+    try:
+        response = requests.get(url)
+        data = response.json()
+
+        if data['result'] != 'success':
+            raise ValueError(f"Error fetching exchange rate: {data.get('error-type', 'Unknown error')}")
+
+
+        rates = data['conversion_rates']
+
+        usd_rate = rates.get('USD')
+        if usd_rate is None:
+            print("USD rate not found in response.")
+            return None
+
+        return usd_rate
+    except Exception as e:
+        print(f"Exception occurred: {e}")
+        return None
+
+
+class CurrencyConversion(BaseModel):
+    amount: float
+    from_currency: str
+
+@app.post("/convert_to_usd")
+async def convert_to_usd(conversion: CurrencyConversion):
+    try:
+        rate = get_exchange_rate(conversion.from_currency)
+        if rate is None:
+            raise HTTPException(status_code=400, detail="Failed to get exchange rate")
+
+        usd_amount = conversion.amount * rate
+        return {"amount_usd": round(usd_amount, 2)}
     except Exception as e:
         return JSONResponse(status_code=400, content={"error": str(e)})
 
