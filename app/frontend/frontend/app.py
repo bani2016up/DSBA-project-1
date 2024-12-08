@@ -5,11 +5,10 @@ import io
 import base64
 from datetime import datetime, timedelta
 
-# Set page config
 st.set_page_config(page_title="Transaction Analysis Dashboard", layout="wide")
 
-# Define the backend API URL
-API_URL = "http://127.0.0.1:6969"  # Use the service name defined in docker-compose.yml
+
+API_URL = "http://127.0.0.1:8000"
 
 def get_date_range():
     response = requests.get(f"{API_URL}/dates_range")

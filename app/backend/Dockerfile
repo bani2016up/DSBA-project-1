@@ -10,6 +10,6 @@ RUN poetry lock
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi
 
-EXPOSE 6969
+EXPOSE 8000
 
 CMD ["poetry", "run", "python", "backend"]

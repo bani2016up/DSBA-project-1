@@ -185,4 +185,4 @@ async def get_top_currencies(start_date: str, end_date: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, port=6969)
+    uvicorn.run(app, port=8000)
