@@ -65,7 +65,7 @@ or use -> https://www.kaggle.com/datasets/ismetsemedov/transactions
    ```
 3. Start web server
    ```
-   poetry run streamlit run  frontend/app.py
+   streamlit run frontend/app.py
    ```
 
 #### Backend

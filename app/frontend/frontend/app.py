@@ -84,7 +84,7 @@ st.header("Hypotheses")
 hypotheses = [
     {
         "statement": "USA and Europe regions are expected to spend more money in USD than other regions.",
-        "result": "Hypothesis incorrect. In fact, the most spending country was Mexico, Brazil, and Russia, respectively."
+        "result": "Hypothesis Correct. Most spending countries ware Mexico (which is included in USA), and europe countries by there sum."
     },
     {
         "statement": "Most popular merchant categories in top spending counties are expected to be different from other regions that spend less money.",
@@ -92,7 +92,7 @@ hypotheses = [
     },
     {
         "statement": "Transaction count should be higher in countries that spend more money.",
-        "result": "Hypothesis incorrect. The most spending countries were the ones that covered most amount of regions, such as Europe. However, it is important to note that originally Europe was expected to be a 'country that spends more money'."
+        "result": "Hypothesis incorrect. The most spending country were the ones, that covered most amount of regions, such as Europe."
     }
 ]
 
