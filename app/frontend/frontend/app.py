@@ -51,6 +51,10 @@ end_date_str = end_date.strftime("%Y-%m-%d")
 
 st.title("Transaction Analysis Dashboard")
 
+st.markdown(
+    "[View on GitHub](https://github.com/bani2016up/DSBA-project-1)",
+    unsafe_allow_html=True
+)
 
 st.header("Objectives")
 st.write("""
