@@ -3,6 +3,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+.DS_Store
+*processed_data.csv
+*synthetic_fraud_data.csv
+
+*poetry.lock
+
 # C extensions
 *.so
 

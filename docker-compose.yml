@@ -1,0 +1,30 @@
+version: '1.0.0'
+
+services:
+  backend:
+    build:
+      context: ./app/backend
+      dockerfile: Dockerfile
+    ports:
+      - "6969:6969"
+    volumes:
+      - ./app/backend:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+
+  frontend:
+    build:
+      context: ./app/frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./app/frontend:/app
+    depends_on:
+      - backend
+    environment:
+      - PYTHONUNBUFFERED=1
+
+volumes:
+  backend:
+  frontend:
