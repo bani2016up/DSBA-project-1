@@ -9,7 +9,7 @@ app = FastAPI()
 
 df: pd.DataFrame = pd.read_csv("processed_data.csv")
 df['timestamp'] = pd.to_datetime(df['timestamp'], format='ISO8601', errors='coerce')
-
+print("Dataset loaded successfully")
 
 def filter_df_by_date(df, start_date, end_date):
     try:
@@ -185,4 +185,4 @@ async def get_top_currencies(start_date: str, end_date: str):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=6969)
+    uvicorn.run(app, port=6969)
