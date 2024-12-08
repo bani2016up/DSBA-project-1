@@ -8,6 +8,8 @@ services:
       - "8000:8000"
     volumes:
       - ./app/backend:/app
+    networks:
+      - app-network
     environment:
       - PYTHONUNBUFFERED=1
 
@@ -21,6 +23,8 @@ services:
       - ./app/frontend:/app
     depends_on:
       - backend
+    networks:
+      - app-network
     environment:
       - PYTHONUNBUFFERED=1
       - API_URL=http://backend:8000
@@ -28,3 +32,7 @@ services:
 volumes:
   backend:
   frontend:
+
+networks:
+  app-network:
+    driver: bridge
