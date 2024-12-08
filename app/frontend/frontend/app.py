@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import requests
 from PIL import Image
@@ -8,7 +9,7 @@ from datetime import datetime, timedelta
 st.set_page_config(page_title="Transaction Analysis Dashboard", layout="wide")
 
 
-API_URL = "http://82.202.197.210:8000"
+API_URL = os.getenv('API_URL', 'http://localhost:8000')
 
 def get_date_range():
     response = requests.get(f"{API_URL}/dates_range")
