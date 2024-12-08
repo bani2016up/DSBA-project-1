@@ -6,6 +6,7 @@ __pycache__/
 .DS_Store
 *processed_data.csv
 *synthetic_fraud_data.csv
+*subset_data.csv
 
 *poetry.lock
 
