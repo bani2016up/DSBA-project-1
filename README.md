@@ -9,6 +9,10 @@ This project analyzes a synthetic fraud dataset to gain insights into transactio
 3. Category Popularity Analysis: Analyze which merchant categories are more popular in different countries.
 4. Visualizations: Create modern-looking graphs to visualize the results.
 
+### [Dataset](https://www.kaggle.com/datasets/ismetsemedov/transactions)
+
+or use -> https://www.kaggle.com/datasets/ismetsemedov/transactions
+
 ## Technologies Used
 
 - Python 3.x
@@ -51,48 +55,50 @@ This project analyzes a synthetic fraud dataset to gain insights into transactio
    ```
 
 ### Option 2: manually.
+
 #### Frontend
+
 1. Open new terminal.
 2. Navigate to dir
-    ```
+   ```
    cd app/frontend
    ```
 3. Start web server
-    ```
+   ```
    poetry run streamlit run  frontend/app.py
    ```
+
 #### Backend
+
 1. Open new terminal.
 2. Navigate to dir
-    ```
+   ```
    cd app/backend
    ```
 3. Start web server
-    ```
+   ```
    poetry run python backend
    ```
-
 
 ## Analysis Results
 
 ## Objectives were:
+
 1. Country Spending Analysis: Analyze the data to determine if some countries spend more money in USD than others. (Completed ✅)
 2. Category Popularity Analysis: Analyze which merchant categories are more popular in some countries compared to others. (Completed ✅)
 
 ## Hypothesis were:
+
 1. USA and Europe regions are expected to spend more money in USD than other regions.
 
-    Hypothesis incorrect. In fact, the most spending country was Mexico, Brazil, and Russia, respectively.
-
-
+   Hypothesis incorrect. In fact, the most spending country was Mexico, Brazil, and Russia, respectively.
 2. Most popular merchant categories in top spending counties are expected to be different from other regions that spend less money.
 
-    Hypothesis incorrect. Most popular merchant categories in top spending countries were the same as in regions that spent less money. However, the amount of money spend on each category was larger.
-
+   Hypothesis incorrect. Most popular merchant categories in top spending countries were the same as in regions that spent less money. However, the amount of money spend on each category was larger.
 3. Transaction count should be higher in countries that spend more money.
 
-    Hypothesis incorrect. The most spending country were the ones, that covered most amount of regions, such as Europe. However, it is important to note that
-    originally Europe was expected to be "country that spend more money".
+   Hypothesis incorrect. The most spending country were the ones, that covered most amount of regions, such as Europe. However, it is important to note that
+   originally Europe was expected to be "country that spend more money".
 
 ## Future Work
 
