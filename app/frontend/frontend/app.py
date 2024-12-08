@@ -9,7 +9,7 @@ from datetime import datetime, timedelta
 st.set_page_config(page_title="Transaction Analysis Dashboard", layout="wide")
 
 
-API_URL = os.getenv('API_URL', 'http://localhost:8000')
+API_URL = os.getenv('API_URL', 'http://localhost:6969')
 
 def get_date_range():
     response = requests.get(f"{API_URL}/dates_range")
